@@ -19,8 +19,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_06_122900) do
   end
 
   create_table "listings", force: :cascade do |t|
-    t.integer "available_beds"
-    t.integer "price"
+    t.integer "available_beds", null: false
+    t.integer "price", null: false
     t.text "description"
     t.boolean "has_wifi"
     t.text "welcome_message"
@@ -28,7 +28,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_06_122900) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["available_beds"], name: "index_listings_on_available_beds"
     t.index ["city_id"], name: "index_listings_on_city_id"
+    t.index ["price"], name: "index_listings_on_price"
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 

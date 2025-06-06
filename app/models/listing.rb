@@ -1,7 +1,11 @@
 class Listing < ApplicationRecord
-  validate :available_beds, :presence true
-  validate :description, presence: true
+  validates :available_beds, presence: true, numericality: { greater_than: 0 }
+  validates :description, presence: true, length: { minimum: 140 }
+  validates :price, presence: true, numericality: { greater_than: 0 }
+  validates :welcome_message, presence: true
+
   has_many :reservations
-  has_many :users, through: :reservations
+  belongs_to :admin, class_name: "User", foreign_key: "admin_id"
   belongs_to :city
+  
 end
