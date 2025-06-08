@@ -3,9 +3,9 @@ class CreateListings < ActiveRecord::Migration[8.0]
     create_table :listings do |t|
       t.integer :available_beds, null: false
       t.integer :price, null: false
-      t.text :description
+      t.text :description, null: false
       t.boolean :has_wifi
-      t.text :welcome_message
+      t.text :welcome_message, null: false
       t.references :city, null: false, foreign_key: true
   
       t.references :admin, null: false, foreign_key: { to_table: :users }
